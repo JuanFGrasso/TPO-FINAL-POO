@@ -26,7 +26,7 @@ public class Administrativo extends Personal{
 		
 	}
 	
-	public ArrayList<Factura> getFacturas(){
+	public static ArrayList<Factura> getFacturas(){
 		return facturas;
 	}
 

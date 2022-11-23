@@ -30,19 +30,19 @@ public class Tecnico extends Personal {
 		return agenda;
 	}
 	
-	public void inicializarInstalacion() {
-		
+	public void inicializarInstalacion(Instalacion instalacion) {
+		instalacion.setEstado(EstadoInstalacion.ENCURSO);
 	}
 	
-	public void cancelarInstalacion() {
-		
+	public void cancelarInstalacion(Instalacion instalacion) {
+		instalacion.setEstado(EstadoInstalacion.CANCELADA);
 	}
 	
-	public void finalizarInstalacion() {
-		
+	public void finalizarInstalacion(Instalacion instalacion) {
+		instalacion.setEstado(EstadoInstalacion.FINALIZADA);
 	}
 	
-	public void ejecutarInstalacion() {
+	public void ejecutarInstalacion(Instalacion instalacion) {
 		
 	}
 	

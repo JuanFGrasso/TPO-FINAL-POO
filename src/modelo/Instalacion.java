@@ -11,6 +11,7 @@ public class Instalacion {
 	private Cliente cliente;
 	private Tecnico tecnico;
 	private int[] equipamiento = new int[3];
+	private int[] tiempos = new int[3];
 	private double litrosCombustible;
 	private EstadoInstalacion estado;
 	private boolean almuezo;
@@ -26,6 +27,7 @@ public class Instalacion {
 		this.equipamiento[0] = evap;
 		this.equipamiento[1] = cond;
 		this.equipamiento[2] = kits;
+		this.estado = EstadoInstalacion.PROGRAMADA;
 	}
 	
 	public void finalizarInstalacion(LocalDateTime fin, int evap, int cond, int kits, boolean almuerzo, double litros) {
@@ -65,6 +67,16 @@ public class Instalacion {
 		this.equipamiento[0] = evap;
 		this.equipamiento[1] = cond;
 		this.equipamiento[2] = kits;
+	}
+	
+	public void setTiempos(int dia, int horario, int tiempo) {
+		this.tiempos[0] = dia;
+		this.tiempos[1] = horario;
+		this.tiempos[2] = tiempo;
+	}
+	
+	public int[] getTiempos() {
+		return tiempos;
 	}
 
 	public double getLitrosCombustible() {

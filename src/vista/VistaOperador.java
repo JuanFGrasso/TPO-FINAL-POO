@@ -15,6 +15,12 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import controlador.Controlador;
+import modelo.Empresa;
+
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import java.awt.CardLayout;
@@ -24,9 +30,9 @@ import javax.swing.JComboBox;
 public class VistaOperador extends JFrame{
 	
 	JPanel panel;
-	JTable tablec;
-	JTable tablet;
-	JTable tablei;
+	TableModel modelc;
+	TableModel modelt;
+	TableModel modeli;
 	private JTextField textField4_1;
 	private JTextField textField4_2;
 	private JTextField textField4_3;
@@ -66,6 +72,7 @@ public class VistaOperador extends JFrame{
 		
 		// Pestaña Clientes
 		
+		
 		String[] columnasc = {"Nro Documento",
 							"Nombre",
 							"Direccion"
@@ -78,9 +85,17 @@ public class VistaOperador extends JFrame{
 		tabbed.addTab("Clientes", panel1);
 		panel1.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		tablec = new JTable(datac,columnasc);
+		modelc = new DefaultTableModel(datac,columnasc) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		JTable tablec = new JTable(modelc);
 		
 		panel1.add(new JScrollPane(tablec));
+		
+		Controlador.cargaTablaC(tablec);
 		
 		JPanel panel4 = new JPanel();
 		panel1.add(panel4);
@@ -130,6 +145,14 @@ public class VistaOperador extends JFrame{
 		btnNewButton1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Controlador.crearCliente(Integer.parseInt(textField4_1.getText()), textField4_2.getText(), textField4_3.getText());
+				String[] datac = {textField4_1.getText(), textField4_2.getText(), textField4_3.getText()};
+				
+				DefaultTableModel tblModel = (DefaultTableModel)tablec.getModel();
+				tblModel.addRow(datac);
+				textField4_1.setText("");
+				textField4_2.setText("");
+				textField4_3.setText("");
 			}
 		});
 		btnNewButton1.setBounds(211, 262, 89, 23);
@@ -144,13 +167,22 @@ public class VistaOperador extends JFrame{
 
 		String[][] datat = {};
 		
-		tablet = new JTable(datat,columnast);
+		modelt = new DefaultTableModel(datat,columnast) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		JTable tablet = new JTable(modelt);
 		
 		JPanel panel2 = new JPanel();
 		tabbed.addTab("Tecnicos", panel2);
 		panel2.setLayout(new GridLayout(0,1,0,0));
 		
 		panel2.add(new JScrollPane(tablet));
+		
+		Controlador.cargaTablaT(tablet);
 		
 		// Pestaña Instalaciones
 		
@@ -165,13 +197,22 @@ public class VistaOperador extends JFrame{
 		
 		String[][]	datai = {};
 		
-		tablei = new JTable(datai,columnasi);
+		modeli = new DefaultTableModel(datai,columnasi) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		JTable tablei = new JTable(modeli);
 		
 		JPanel panel3 = new JPanel();
 		tabbed.addTab("Instalaciones", panel3);
 		panel3.setLayout(new GridLayout(0,1,0,0));
 		
 		panel3.add(new JScrollPane(tablei));
+		
+		Controlador.cargaTablaI(tablei);
 		
 		JPanel panel5 = new JPanel();
 		panel3.add(panel5);
@@ -214,16 +255,17 @@ public class VistaOperador extends JFrame{
 		
 		JButton btnNewButton2 = new JButton("Programar");
 		btnNewButton2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnNewButton2.setBounds(862, 264, 105, 27);
 		panel5.add(btnNewButton2);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(405, 76, 62, 22);
 		panel5.add(comboBox);
+		
+		for (int i = 1; i < 7; i++) {
+			comboBox.addItem(i);
+		}
 		
 		JLabel label5_4_1 = new JLabel("Horario");
 		label5_4_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -233,6 +275,10 @@ public class VistaOperador extends JFrame{
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(405, 117, 62, 22);
 		panel5.add(comboBox_1);
+		
+		for (int i = 1; i < 25; i++) {
+			comboBox_1.addItem(i);
+		}
 		
 		JLabel label5_3_1 = new JLabel("Tiempo");
 		label5_3_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -274,6 +320,15 @@ public class VistaOperador extends JFrame{
 		textField_3.setBounds(705, 153, 122, 20);
 		panel5.add(textField_3);
 		
-		
+		btnNewButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String flag = Controlador.programarInstalacion(Integer.parseInt(textField5_1.getText()), Integer.parseInt(textField5_2.getText()), Integer.parseInt(comboBox.getSelectedItem().toString()), Integer.parseInt(comboBox_1.getSelectedItem().toString()), Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()));
+				if (flag.equals("")) {
+					Controlador.cargaTablaI(tablei);
+				} else {
+					label5_5.setText(flag);
+				}
+			}
+		});
 	}
 }

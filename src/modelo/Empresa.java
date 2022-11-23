@@ -7,14 +7,17 @@ public class Empresa {
 	
 	private static Empresa empresa = null;
 	private ArrayList<Personal> personal;
+	private ArrayList<Tecnico> tecnicos;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Equipamiento> equipamiento;
 	private ArrayList<Instalacion> instalaciones;
 	
 	private Empresa() {
 		personal = new ArrayList<Personal>();
+		tecnicos = new ArrayList<Tecnico>();
 		clientes = new ArrayList<Cliente>();
 		equipamiento = new ArrayList<Equipamiento>();
+		instalaciones = new ArrayList<Instalacion>();
 		equipamiento.add(Evaporador.getInstance());
 		equipamiento.add(Condensador.getInstance());
 		equipamiento.add(KitInstalacion.getInstance());
@@ -39,7 +42,7 @@ public class Empresa {
 			personal.add(new Operador(nombre, clave, tipo));
 			break;
 		case TECNICO:
-			personal.add(new Tecnico(nombre, clave, tipo, nivel));
+			tecnicos.add(new Tecnico(nombre, clave, tipo, nivel));
 		}
 	}
 	
@@ -53,6 +56,9 @@ public class Empresa {
 			instalaciones.add(instalacion);
 			cliente.getAgenda().agendarInstalacion(instalacion, dia, horario, tiempo);
 			tecnico.getAgenda().agendarInstalacion(instalacion, dia, horario, tiempo);
+			Evaporador.getInstance().consumirCantidad(evap);
+			Condensador.getInstance().consumirCantidad(cond);
+			KitInstalacion.getInstance().consumirCantidad(kits);
 			return true;
 		} else {
 			return false;
@@ -70,6 +76,16 @@ public class Empresa {
 		return personal;
 	}
 	
+	public Tecnico obtenerTecnico(int nroEmpleado) {
+		Tecnico tecnicos = null;
+		for (Tecnico t: this.tecnicos) {
+			if (t.getNroEmpleado() == nroEmpleado) {
+				tecnicos = t;
+			}
+		}
+		return tecnicos;
+	}
+	
 	public Cliente obtenerCliente(int documento) {
 		Cliente cliente = null;
 		for (Cliente c: clientes) {
@@ -80,8 +96,20 @@ public class Empresa {
 		return cliente;
 	}
 	
+	public boolean consultarAgenda(Tecnico tecnico, int dia, int horario, int tiempo) {
+		return tecnico.getAgenda().estaDisponible(dia, horario, tiempo);
+	}
+	
+	public boolean consultarAgenda(Cliente cliente, int dia, int horario, int tiempo) {
+		return cliente.getAgenda().estaDisponible(dia, horario, tiempo);
+	}
+	
 	public ArrayList<Personal> getPersonal(){
 		return personal;
+	}
+	
+	public ArrayList<Tecnico> getTecnicos(){
+		return tecnicos;
 	}
 	
 	public ArrayList<Cliente> getClientes(){

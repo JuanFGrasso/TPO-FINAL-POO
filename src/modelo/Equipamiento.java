@@ -21,17 +21,12 @@ public abstract class Equipamiento {
 		this.cantidad = cantidad;
 	}
 	
-	public void agregarCantidad(Equipamiento equipamiento, int cantidad) {
-		equipamiento.setCantidad(equipamiento.getCantidad()+cantidad);
+	public void agregarCantidad(int cantidad) {
+		this.cantidad = this.cantidad + cantidad;
 	}
 	
-	public boolean consumirCantidad(Equipamiento equipamiento, int cantidad) {
-		if (cantidad > equipamiento.getCantidad()) {
-			return false;
-		} else {
-			equipamiento.setCantidad(equipamiento.getCantidad()-cantidad);
-			return true;
-		}
+	public void consumirCantidad(int cantidad) {
+		this.cantidad = this.cantidad - cantidad;
 	}
 	
 	public void cantidadActual() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.Administrador;
 import modelo.Empresa;
+import modelo.Evaporador;
 import modelo.NivelTecnico;
 import modelo.Personal;
 import modelo.TipoEmpleado;
@@ -14,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//Vista.GUI();
-		//VistaOperador.GUI();
+		VistaOperador.GUI();
 		//VistaAdministrador.GUI();
 		//VistaAdministrativo.GUI();
 		//VistaTecnico.GUI();
@@ -24,7 +25,7 @@ public class Main {
 		empresa.agregarPersonal("Administrador1", "test1234", TipoEmpleado.ADMINISTRADOR, null);
 		empresa.agregarPersonal("Operador1", "test4321", TipoEmpleado.OPERADOR, null);
 		empresa.agregarPersonal("Administrativo1", "test1111", TipoEmpleado.ADMINISTRATIVO, null);
-		empresa.agregarPersonal("Tecnico1", "test0101", TipoEmpleado.TECNICO, null);
+		empresa.agregarPersonal("Tecnico1", "test0101", TipoEmpleado.TECNICO, NivelTecnico.JUNIOR);
 		
 		empresa.agregarCliente(4000, "Cliente1", "Juramento 100");
 		empresa.agregarCliente(5000, "Cliente2", "Juramento 100");
@@ -32,7 +33,7 @@ public class Main {
 		
 		Administrador a = (Administrador) empresa.obtenerPersonal(0);
 		a.altaEquipamiento(TipoEquipamiento.EVAPORADOR, 100, 50);
-		a.altaEquipamiento(TipoEquipamiento.EVAPORADOR, 100, 100);
+		a.altaEquipamiento(TipoEquipamiento.CONDENSADOR, 100, 100);
 		a.altaEquipamiento(TipoEquipamiento.KITINSTALACION, 100, 75);
 		
 		a.configurarCostoHora(NivelTecnico.JUNIOR, 100);

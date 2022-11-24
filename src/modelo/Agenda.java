@@ -1,7 +1,5 @@
 package modelo;
 
-import java.time.LocalDateTime;
-
 public class Agenda {
 	
 	private Instalacion[][] agenda;
@@ -22,6 +20,8 @@ public class Agenda {
 	}
 	
 	public void agendarInstalacion(Instalacion instalacion, int dia, int horario, int tiempo) {
+		this.dia = dia;
+		this.horario = horario;
 		for (int i = horario; i < horario + tiempo; i++) {
 			agenda[dia][i] = instalacion;
 		}
@@ -49,6 +49,14 @@ public class Agenda {
 	
 	public Instalacion[][] getAgenda(){
 		return agenda;
+	}
+
+	public int getDia() {
+		return dia;
+	}
+
+	public int getHorario() {
+		return horario;
 	}
 
 }

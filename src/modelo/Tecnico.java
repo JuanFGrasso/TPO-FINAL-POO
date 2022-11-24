@@ -36,14 +36,12 @@ public class Tecnico extends Personal {
 	
 	public void cancelarInstalacion(Instalacion instalacion) {
 		instalacion.setEstado(EstadoInstalacion.CANCELADA);
+		
 	}
 	
 	public void finalizarInstalacion(Instalacion instalacion) {
 		instalacion.setEstado(EstadoInstalacion.FINALIZADA);
-	}
-	
-	public void ejecutarInstalacion(Instalacion instalacion) {
-		
+		Administrativo.agregarInstalacionFinalizada(instalacion);
 	}
 	
 	public static int getCostoHoraJunior() {

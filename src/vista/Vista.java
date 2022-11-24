@@ -107,10 +107,6 @@ public class Vista extends JFrame{
 		ManejadorPanel manejador = new ManejadorPanel();
 		button1.addActionListener(manejador);
 		
-		
-
-		
-		
 	}
 
 }

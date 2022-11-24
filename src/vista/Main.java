@@ -15,9 +15,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//Vista.GUI();
-		VistaOperador.GUI();
+		//VistaOperador.GUI();
 		//VistaAdministrador.GUI();
-		//VistaAdministrativo.GUI();
+		VistaAdministrativo.GUI();
 		//VistaTecnico.GUI();
 		
 		Empresa empresa = Empresa.getInstace();

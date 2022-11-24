@@ -28,5 +28,9 @@ public class Factura {
 		
 		this.costo = costoe + costot;
 	}
+	
+	public int getCosto() {
+		return costo;
+	}
 
 }

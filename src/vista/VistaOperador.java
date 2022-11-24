@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,11 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import controlador.Controlador;
-import modelo.Empresa;
 
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
@@ -38,10 +33,10 @@ public class VistaOperador extends JFrame{
 	private JTextField textField4_3;
 	private JTextField textField5_1;
 	private JTextField textField5_2;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textField5_3;
+	private JTextField textField5_4;
+	private JTextField textField5_5;
+	private JTextField textField5_6;
 	
 	public static void GUI() {
 		EventQueue.invokeLater(new Runnable() {
@@ -253,76 +248,76 @@ public class VistaOperador extends JFrame{
 		label5_5.setBounds(10, 224, 442, 27);
 		panel5.add(label5_5);
 		
-		JButton btnNewButton2 = new JButton("Programar");
-		btnNewButton2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JButton btnNewButton5_1 = new JButton("Programar");
+		btnNewButton5_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		btnNewButton2.setBounds(862, 264, 105, 27);
-		panel5.add(btnNewButton2);
+		btnNewButton5_1.setBounds(862, 264, 105, 27);
+		panel5.add(btnNewButton5_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(405, 76, 62, 22);
-		panel5.add(comboBox);
+		JComboBox comboBox5_1 = new JComboBox();
+		comboBox5_1.setBounds(405, 76, 62, 22);
+		panel5.add(comboBox5_1);
 		
-		for (int i = 1; i < 7; i++) {
-			comboBox.addItem(i);
+		for (int i = 0; i < 6; i++) {
+			comboBox5_1.addItem(i);
 		}
 		
-		JLabel label5_4_1 = new JLabel("Horario");
-		label5_4_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label5_4_1.setBounds(321, 119, 62, 14);
-		panel5.add(label5_4_1);
+		JLabel label5_6 = new JLabel("Horario");
+		label5_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label5_6.setBounds(321, 119, 62, 14);
+		panel5.add(label5_6);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(405, 117, 62, 22);
-		panel5.add(comboBox_1);
+		JComboBox comboBox5_2 = new JComboBox();
+		comboBox5_2.setBounds(405, 117, 62, 22);
+		panel5.add(comboBox5_2);
 		
-		for (int i = 1; i < 25; i++) {
-			comboBox_1.addItem(i);
+		for (int i = 0; i < 24; i++) {
+			comboBox5_2.addItem(i);
 		}
 		
-		JLabel label5_3_1 = new JLabel("Tiempo");
-		label5_3_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label5_3_1.setBounds(321, 159, 77, 14);
-		panel5.add(label5_3_1);
+		JLabel label5_7 = new JLabel("Tiempo");
+		label5_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label5_7.setBounds(321, 159, 77, 14);
+		panel5.add(label5_7);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(405, 158, 77, 20);
-		panel5.add(textField);
+		textField5_3 = new JTextField();
+		textField5_3.setColumns(10);
+		textField5_3.setBounds(405, 158, 77, 20);
+		panel5.add(textField5_3);
 		
-		JLabel label5_2_1 = new JLabel("Cant. Evaporadoras");
-		label5_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label5_2_1.setBounds(544, 79, 151, 14);
-		panel5.add(label5_2_1);
+		JLabel label5_8 = new JLabel("Cant. Evaporadoras");
+		label5_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label5_8.setBounds(544, 79, 151, 14);
+		panel5.add(label5_8);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(705, 77, 122, 20);
-		panel5.add(textField_1);
+		textField5_4 = new JTextField();
+		textField5_4.setColumns(10);
+		textField5_4.setBounds(705, 77, 122, 20);
+		panel5.add(textField5_4);
 		
-		JLabel label5_2_1_1 = new JLabel("Cant. Condensadoras");
-		label5_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label5_2_1_1.setBounds(544, 115, 151, 14);
-		panel5.add(label5_2_1_1);
+		JLabel label5_9 = new JLabel("Cant. Condensadoras");
+		label5_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label5_9.setBounds(544, 115, 151, 14);
+		panel5.add(label5_9);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(705, 113, 122, 20);
-		panel5.add(textField_2);
+		textField5_5 = new JTextField();
+		textField5_5.setColumns(10);
+		textField5_5.setBounds(705, 113, 122, 20);
+		panel5.add(textField5_5);
 		
-		JLabel label5_2_1_1_1 = new JLabel("Cant. Kits");
-		label5_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label5_2_1_1_1.setBounds(544, 155, 151, 14);
-		panel5.add(label5_2_1_1_1);
+		JLabel label5_10 = new JLabel("Cant. Kits");
+		label5_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label5_10.setBounds(544, 155, 151, 14);
+		panel5.add(label5_10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(705, 153, 122, 20);
-		panel5.add(textField_3);
+		textField5_6 = new JTextField();
+		textField5_6.setColumns(10);
+		textField5_6.setBounds(705, 153, 122, 20);
+		panel5.add(textField5_6);
 		
-		btnNewButton2.addActionListener(new ActionListener() {
+		btnNewButton5_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String flag = Controlador.programarInstalacion(Integer.parseInt(textField5_1.getText()), Integer.parseInt(textField5_2.getText()), Integer.parseInt(comboBox.getSelectedItem().toString()), Integer.parseInt(comboBox_1.getSelectedItem().toString()), Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()));
+				String flag = Controlador.programarInstalacion(Integer.parseInt(textField5_1.getText()), Integer.parseInt(textField5_2.getText()), Integer.parseInt(comboBox5_1.getSelectedItem().toString()), Integer.parseInt(comboBox5_2.getSelectedItem().toString()), Integer.parseInt(textField5_3.getText()), Integer.parseInt(textField5_4.getText()), Integer.parseInt(textField5_5.getText()), Integer.parseInt(textField5_6.getText()));
 				if (flag.equals("")) {
 					Controlador.cargaTablaI(tablei);
 				} else {

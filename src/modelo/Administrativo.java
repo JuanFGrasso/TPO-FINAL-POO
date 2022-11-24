@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Administrativo extends Personal{
 	
-	private static ArrayList<Instalacion> instalacionesFinalizadas;
+	private static ArrayList<Instalacion> instalacionCanceladas;
+	private static ArrayList<Instalacion> instalacionFinalizadas;
 	private static ArrayList<Factura> facturas;
 	
 	public Administrativo(String nombre, String clave, TipoEmpleado tipo) {
@@ -25,9 +26,24 @@ public class Administrativo extends Personal{
 	public void imprimirFactura() {
 		
 	}
-	
 	public static ArrayList<Factura> getFacturas(){
 		return facturas;
+	}
+	
+	public static void agregarInstalacionFinalizada(Instalacion instalacion) {
+		instalacionFinalizadas.add(instalacion);
+	}
+	
+	public static ArrayList<Instalacion> getInstalacionesFinalizadas(){
+		return instalacionFinalizadas;
+	}
+	
+	public static void agregarInstalacionCancelada(Instalacion instalacion) {
+		instalacionCanceladas.add(instalacion);
+	}
+	
+	public static ArrayList<Instalacion> getInstalacionesCanceladas(){
+		return instalacionCanceladas;
 	}
 
 }

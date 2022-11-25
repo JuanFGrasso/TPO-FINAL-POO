@@ -17,6 +17,7 @@ public class Instalacion {
 	private boolean almuezo;
 	private boolean soportePared;
 	private boolean seguroTrabajo;
+	private boolean facturado;
 	
 	public Instalacion(Cliente cliente, Tecnico tecnico, LocalDateTime inicio, int evap, int cond, int kits) {
 		this.nroInstalacion = generador;
@@ -103,6 +104,13 @@ public class Instalacion {
 		return seguroTrabajo;
 	}
 	
+	public boolean isFacturado() {
+		return facturado;
+	}
+	
+	public void setFacturado(boolean facturado) {
+		this.facturado = facturado;
+	}
 	
 	
 

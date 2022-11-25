@@ -2,11 +2,16 @@ package modelo;
 
 public class Factura {
 	
+	private static int generador = 0;
+	private int nroFactura;
 	private Instalacion instalacion;
 	private int costo;
 	
 	public Factura(Instalacion instalacion) {
+		this.nroFactura = generador;
 		this.instalacion = instalacion;
+		calcularCostos();
+		generador++;
 	}
 	
 	public Instalacion getInstalacion() {
@@ -31,6 +36,10 @@ public class Factura {
 	
 	public int getCosto() {
 		return costo;
+	}
+	
+	public int getNroFactura() {
+		return nroFactura;
 	}
 
 }

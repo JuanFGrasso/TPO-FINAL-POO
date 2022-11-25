@@ -184,7 +184,7 @@ public class VistaOperador extends JFrame{
 		String[] columnasi = {"Nro de instalacion",
 							"Cliente",
 							"Tecnico",
-							"Fecha",
+							"Estado",
 							"Evaporadoras",
 							"Condensadoras",
 							"Kits de Instalacion"

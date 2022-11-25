@@ -3,10 +3,14 @@ package vista;
 import java.util.ArrayList;
 
 import modelo.Administrador;
+import modelo.Cliente;
 import modelo.Empresa;
 import modelo.Evaporador;
+import modelo.Instalacion;
 import modelo.NivelTecnico;
+import modelo.Operador;
 import modelo.Personal;
+import modelo.Tecnico;
 import modelo.TipoEmpleado;
 import modelo.TipoEquipamiento;
 
@@ -14,10 +18,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//Vista.GUI();
+		Vista.GUI();
 		//VistaOperador.GUI();
 		//VistaAdministrador.GUI();
-		VistaAdministrativo.GUI();
+		//VistaAdministrativo.GUI();
 		//VistaTecnico.GUI();
 		
 		Empresa empresa = Empresa.getInstace();
@@ -39,6 +43,15 @@ public class Main {
 		a.configurarCostoHora(NivelTecnico.JUNIOR, 100);
 		a.configurarCostoHora(NivelTecnico.SEMISENIOR, 200);
 		a.configurarCostoHora(NivelTecnico.SENIOR, 300);
+		
+		Operador o = (Operador) empresa.obtenerPersonal(1);
+		Tecnico t = empresa.obtenerTecnico(3);
+		Cliente c = empresa.obtenerCliente(4000);
+		o.agendarInstalacion(c, t, 2, 15, 5, null, 10, 15, 5);
+		
+		Instalacion i = empresa.obtenerInstalacion(0);
+		
+		t.finalizarInstalacion(i);
 		
 
 	}

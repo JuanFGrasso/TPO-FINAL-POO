@@ -39,7 +39,7 @@ public class VistaTecnico extends JFrame{
 		panel.add(tabbed);
 		
 		JPanel panel1 = new JPanel();
-		tabbed.addTab("Visualizar Instalacion", panel1);
+		tabbed.addTab("Instalacion", panel1);
 		
 		JPanel panel2 = new JPanel();
 		tabbed.addTab("Ejecutar Instalacion", panel2);

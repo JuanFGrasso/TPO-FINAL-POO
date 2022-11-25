@@ -66,6 +66,17 @@ public class Empresa {
 		
 	}
 	
+	public Instalacion obtenerInstalacion(int nroInstalacion) {
+		Instalacion instalacion = null;
+		for (Instalacion i: this.instalaciones) {
+			if (i.getNroInstalacion() == nroInstalacion) {
+				instalacion = i;
+			}
+		}
+		return instalacion;
+	}
+	
+	
 	public Personal obtenerPersonal(int nroEmpleado) {
 		Personal personal = null;
 		for (Personal p: this.personal) {

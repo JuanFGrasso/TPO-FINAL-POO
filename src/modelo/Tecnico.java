@@ -36,7 +36,7 @@ public class Tecnico extends Personal {
 	
 	public void cancelarInstalacion(Instalacion instalacion) {
 		instalacion.setEstado(EstadoInstalacion.CANCELADA);
-		
+		Administrativo.agregarInstalacionCancelada(instalacion);
 	}
 	
 	public void finalizarInstalacion(Instalacion instalacion) {

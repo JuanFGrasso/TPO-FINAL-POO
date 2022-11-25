@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Administrativo extends Personal{
 	
-	private static ArrayList<Instalacion> instalacionCanceladas;
-	private static ArrayList<Instalacion> instalacionFinalizadas;
-	private static ArrayList<Factura> facturas;
+	private static ArrayList<Instalacion> instalacionCanceladas = new ArrayList<Instalacion>();
+	private static ArrayList<Instalacion> instalacionFinalizadas = new ArrayList<Instalacion>();
+	private static ArrayList<Factura> facturas = new ArrayList<Factura>();
 	
 	public Administrativo(String nombre, String clave, TipoEmpleado tipo) {
 		this.nroEmpleado = generador;
@@ -32,6 +32,16 @@ public class Administrativo extends Personal{
 	
 	public static void agregarInstalacionFinalizada(Instalacion instalacion) {
 		instalacionFinalizadas.add(instalacion);
+	}
+	
+	public static Instalacion obtenerInstalacionF(int nroInstalacion) {
+		Instalacion instalacion = null;
+		for (Instalacion i: instalacionFinalizadas) {
+			if (i.getNroInstalacion() == nroInstalacion) {
+				instalacion = i;
+			}
+		}
+		return instalacion;
 	}
 	
 	public static ArrayList<Instalacion> getInstalacionesFinalizadas(){

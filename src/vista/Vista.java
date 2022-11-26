@@ -44,15 +44,19 @@ public class Vista extends JFrame{
 					switch (tipo) {
 					case ADMINISTRADOR:
 						VistaAdministrador.GUI();
+						dispose();
 						break;
 					case ADMINISTRATIVO:
 						VistaAdministrativo.GUI();
+						dispose();
 						break;
 					case OPERADOR:
 						VistaOperador.GUI();
+						dispose();
 						break;
 					case TECNICO:
 						VistaTecnico.GUI();
+						dispose();
 						break;
 					}
 				} else {

@@ -18,6 +18,8 @@ import controlador.Controlador;
 import modelo.Instalacion;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -50,7 +52,7 @@ public class VistaAdministrativo extends JFrame{
 	
 	public VistaAdministrativo() {
 		setResizable(false);
-		setTitle("Login");
+		setTitle("Vista de Administrativo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200,200,1000,700);
 		panel = new JPanel();
@@ -133,7 +135,7 @@ public class VistaAdministrativo extends JFrame{
 		Controlador.cargaTablaIF(tableif,comboBox);
 		
 		JButton btnNewButton = new JButton("Facturar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton.setBounds(131, 197, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -215,22 +217,6 @@ public class VistaAdministrativo extends JFrame{
 		textField_2.setBounds(140, 185, 86, 20);
 		panel_2.add(textField_2);
 		
-		JButton btnNewButton_1 = new JButton("Modificar");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(135, 251, 89, 23);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Controlador.ajustarInstalacion(Integer.parseInt(textField_3.getText()), Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()), Integer.parseInt(textField_2.getText()));
-				Controlador.cargaTablaI(tablei);
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_3.setText("");
-			}
-		});
-		
-		panel_2.add(btnNewButton_1);
-		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_4.setBounds(10, 217, 292, 23);
@@ -241,14 +227,40 @@ public class VistaAdministrativo extends JFrame{
 		lblNewLabel_3_2.setBounds(12, 66, 98, 25);
 		panel_2.add(lblNewLabel_3_2);
 		
+		JButton btnNewButton_1 = new JButton("Modificar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton_1.setBounds(135, 251, 89, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField_3.getText().equals("") || textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("")) {
+					JOptionPane.showMessageDialog(panel, "Ingrese todos los campos");
+				} else {
+					if (!Controlador.isNumeric(textField.getText()) || !Controlador.isNumeric(textField_1.getText()) || !Controlador.isNumeric(textField_2.getText()) || !Controlador.isNumeric(textField_3.getText())) {
+						JOptionPane.showMessageDialog(panel, "Datos ingresados incorrectos");
+					} else {
+						if (Controlador.ajustarInstalacion(Integer.parseInt(textField_3.getText()), Integer.parseInt(textField.getText()), Integer.parseInt(textField_1.getText()), Integer.parseInt(textField_2.getText()))) {
+							Controlador.cargaTablaI(tablei);
+							textField.setText("");
+							textField_1.setText("");
+							textField_2.setText("");
+							textField_3.setText("");
+							lblNewLabel_4.setText("");
+						} else {
+							lblNewLabel_4.setText("Instalacion no existe");
+						}
+					}
+				}
+			}
+		});
+		
+		panel_2.add(btnNewButton_1);
+		
+		
+		
 		textField_3 = new JTextField();
 		textField_3.setBounds(140, 70, 86, 20);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
-		
-				
-		
-		
 		
 	}
 }

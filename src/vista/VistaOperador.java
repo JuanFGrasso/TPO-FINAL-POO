@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -53,7 +54,7 @@ public class VistaOperador extends JFrame{
 	
 	public VistaOperador() {
 		setResizable(false);
-		setTitle("Login");
+		setTitle("Vista de Operador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200,200,1000,700);
 		panel = new JPanel();
@@ -137,17 +138,25 @@ public class VistaOperador extends JFrame{
 		panel4.add(label4_5);
 		
 		JButton btnNewButton1 = new JButton("Crear");
-		btnNewButton1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.crearCliente(Integer.parseInt(textField4_1.getText()), textField4_2.getText(), textField4_3.getText());
-				String[] datac = {textField4_1.getText(), textField4_2.getText(), textField4_3.getText()};
-				
-				DefaultTableModel tblModel = (DefaultTableModel)tablec.getModel();
-				tblModel.addRow(datac);
-				textField4_1.setText("");
-				textField4_2.setText("");
-				textField4_3.setText("");
+				if (textField4_1.getText().equals("") || textField4_2.getText().equals("") || textField4_3.getText().equals("")) {
+					JOptionPane.showMessageDialog(panel, "Ingrese todos los campos");
+				} else {
+					if (!Controlador.isNumeric(textField4_1.getText())) {
+						JOptionPane.showMessageDialog(panel, "Datos ingresados incorrectos");
+					} else {
+						Controlador.crearCliente(Integer.parseInt(textField4_1.getText()), textField4_2.getText(), textField4_3.getText());
+						String[] datac = {textField4_1.getText(), textField4_2.getText(), textField4_3.getText()};
+						
+						DefaultTableModel tblModel = (DefaultTableModel)tablec.getModel();
+						tblModel.addRow(datac);
+						textField4_1.setText("");
+						textField4_2.setText("");
+						textField4_3.setText("");
+					}
+				}
 			}
 		});
 		btnNewButton1.setBounds(211, 262, 89, 23);
@@ -249,7 +258,7 @@ public class VistaOperador extends JFrame{
 		panel5.add(label5_5);
 		
 		JButton btnNewButton5_1 = new JButton("Programar");
-		btnNewButton5_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton5_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		btnNewButton5_1.setBounds(862, 264, 105, 27);
 		panel5.add(btnNewButton5_1);
@@ -317,11 +326,26 @@ public class VistaOperador extends JFrame{
 		
 		btnNewButton5_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String flag = Controlador.programarInstalacion(Integer.parseInt(textField5_1.getText()), Integer.parseInt(textField5_2.getText()), Integer.parseInt(comboBox5_1.getSelectedItem().toString()), Integer.parseInt(comboBox5_2.getSelectedItem().toString()), Integer.parseInt(textField5_3.getText()), Integer.parseInt(textField5_4.getText()), Integer.parseInt(textField5_5.getText()), Integer.parseInt(textField5_6.getText()));
-				if (flag.equals("")) {
-					Controlador.cargaTablaI(tablei);
+				if (textField5_1.getText().equals("") || textField5_2.getText().equals("") || textField5_3.getText().equals("") || textField5_4.getText().equals("") || textField5_5.getText().equals("") || textField5_6.getText().equals("")) {
+					JOptionPane.showMessageDialog(panel, "Ingrese todos los campos");
 				} else {
-					label5_5.setText(flag);
+					if (!Controlador.isNumeric(textField5_1.getText()) || !Controlador.isNumeric(textField5_2.getText()) || !Controlador.isNumeric(textField5_3.getText()) || !Controlador.isNumeric(textField5_4.getText()) || !Controlador.isNumeric(textField5_5.getText()) || !Controlador.isNumeric(textField5_6.getText())) {
+						JOptionPane.showMessageDialog(panel, "Datos ingresados incorrectos");
+					} else {
+						String flag = Controlador.programarInstalacion(Integer.parseInt(textField5_1.getText()), Integer.parseInt(textField5_2.getText()), Integer.parseInt(comboBox5_1.getSelectedItem().toString()), Integer.parseInt(comboBox5_2.getSelectedItem().toString()), Integer.parseInt(textField5_3.getText()), Integer.parseInt(textField5_4.getText()), Integer.parseInt(textField5_5.getText()), Integer.parseInt(textField5_6.getText()));
+						if (flag.equals("")) {
+							Controlador.cargaTablaI(tablei);
+							label5_5.setText("");
+							textField5_1.setText("");
+							textField5_2.setText("");
+							textField5_3.setText("");
+							textField5_4.setText("");
+							textField5_5.setText("");
+							textField5_6.setText("");
+						} else {
+							label5_5.setText(flag);
+						}
+					}
 				}
 			}
 		});

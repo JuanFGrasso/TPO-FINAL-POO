@@ -42,8 +42,14 @@ public class Empresa {
 			personal.add(new Operador(nombre, clave, tipo));
 			break;
 		case TECNICO:
-			tecnicos.add(new Tecnico(nombre, clave, tipo, nivel));
+			Tecnico t = new Tecnico(nombre,clave,tipo,nivel);
+			personal.add(t);
+			tecnicos.add(t);
 		}
+	}
+	
+	public void eliminarPersonal(Personal personal) {
+		this.personal.remove(personal);
 	}
 	
 	public void agregarCliente(int documento, String nombre, String direccion) {

@@ -36,10 +36,12 @@ public class Administrador extends Personal{
 		Empresa.getInstace().agregarPersonal(nombre, clave, tipo, nivel);
 	}
 	
-	public void ModificarPersonal(int nroEmpleado, String nombre, String clave) {
+	public void modificarPersonal(int nroEmpleado, String nombre, String clave) {
 		Personal personal = Empresa.getInstace().obtenerPersonal(nroEmpleado);
-		personal.setNombre(nombre);
-		personal.setClave(clave);
+		if (personal != null) {
+			personal.setNombre(nombre);
+			personal.setClave(clave);
+		}
 	}
 	
 	public void configurarCostoHora(NivelTecnico nivel, int costo) {
@@ -53,6 +55,32 @@ public class Administrador extends Personal{
 		case SENIOR:
 			Tecnico.setCostoHoraSenior(costo);
 			break;
+		}
+	}
+	
+	public void configurarCostoEquipamiento(String tipo, int costo) {
+		switch (tipo) {
+		case "Evaporador":
+			Evaporador.getInstance().setCosto(costo);
+			break;
+		case "Condensador":
+			Condensador.getInstance().setCosto(costo);
+			break;
+		case "KitInstalacio":
+			KitInstalacion.getInstance().setCosto(costo);
+		}
+	}
+	
+	public void ajustarStock(String tipo, int cantidad) {
+		switch (tipo) {
+		case "Evaporador":
+			Evaporador.getInstance().setCantidad(cantidad);
+			break;
+		case "Condensador":
+			Condensador.getInstance().setCantidad(cantidad);;
+			break;
+		case "KitInstalacion":
+			KitInstalacion.getInstance().setCantidad(cantidad);;
 		}
 	}
 
